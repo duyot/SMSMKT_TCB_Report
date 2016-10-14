@@ -11,12 +11,12 @@ import org.slf4j.LoggerFactory;
  * Created by duyot on 9/29/2016.
  */
 public class ExportReportWorker {
+
     Scheduler exportReportScheduler;
     JobDetail exportReportJD;
     Trigger exportReportTrigger;
 
     public static final String EXPORT_REPORT_CRONTAB = BundleUtils.getkey("export_report_crontab");
-
 
     Logger log = LoggerFactory.getLogger(ExportReportWorker.class);
 
@@ -34,6 +34,14 @@ public class ExportReportWorker {
     public void start(){
         try {
             exportReportScheduler.start();
+        } catch (SchedulerException e) {
+            log.error(e.toString());
+            e.printStackTrace();
+        }
+    }
+    public void stop(){
+        try {
+            exportReportScheduler.shutdown();
         } catch (SchedulerException e) {
             log.error(e.toString());
             e.printStackTrace();

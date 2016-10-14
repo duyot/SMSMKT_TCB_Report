@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +22,7 @@ import java.util.Map;
 /**
  * Created by duyot on 9/28/2016.
  */
-public class SMSTCBExport  implements Job{
+public class SMSTCBExport implements Job{
     SMSTcbRequestDAO smsTcbRequestDAO;
     public final String TEMPLATE_PATH = BundleUtils.getkey("template_path");
     public final String REPORT_PATH   = BundleUtils.getkey("report_path");
@@ -31,7 +30,6 @@ public class SMSTCBExport  implements Job{
     Logger log = LoggerFactory.getLogger(SMSTcbRequest.class);
 
     public SMSTCBExport() {
-        //TODO check if init before execute
         this.smsTcbRequestDAO = new SMSTcbRequestDAO();
     }
 
@@ -41,7 +39,6 @@ public class SMSTCBExport  implements Job{
     }
 
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        this.smsTcbRequestDAO = new SMSTcbRequestDAO();
         exportExcelReport();
     }
 

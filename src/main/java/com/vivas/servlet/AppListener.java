@@ -16,15 +16,20 @@ import java.io.IOException;
 @WebListener
 public class AppListener implements ServletContextListener {
     Logger log = LoggerFactory.getLogger(AppListener.class);
+    ExportReportWorker exportReportWorker;
+
+    public AppListener() {
+        exportReportWorker = new ExportReportWorker();
+    }
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        ExportReportWorker exportReportWorker = new ExportReportWorker();
         exportReportWorker.start();
         log.info("Starting report worker...");
 
     }
 
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-
+        exportReportWorker.stop();
+        log.info("Stopping report worker...");
     }
 }
